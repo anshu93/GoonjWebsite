@@ -1,0 +1,309 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+
+------------------------------
+
+Goonj Project Website
+
+------------------------------
+
+----------------------------------------------------------------------
+
+Website built using: HTML, CSS, Python, Django, Apache Solr, Haystack
+
+----------------------------------------------------------------------
+
+Page details
+=============
+
+Name       : events.html
+Description: Events page
+Version    : 2.0
+Released   : 6 August 2012
+Page width : 980px
+
+=============
+
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<!--
+	
+    Head Start
+    
+-->
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Goonj: Media for Everyone</title>
+
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<!-- CSS -->
+<link href="/static/style.css" rel="stylesheet" type="text/css" media="screen" />
+<link rel="stylesheet" type="text/css" href="/static/style_timeline.css" />
+<link rel="stylesheet" type="text/css" href="/static/style_timeline2.css" />
+<link rel="stylesheet" type="text/css" href="/static/style_timeline2.css" />
+
+<!---- Extra Elements ---->
+
+<link rel='stylesheet' id='fblb-css-css'  href='http://www.gramvaani.org/wp-content/plugins/slider/fblb.css?ver=3.3.1' type='text/css' media='all' />
+
+
+
+
+
+</head>
+
+<!--
+	
+    Head End
+    
+-->
+
+
+<!--
+	
+    Body Start
+    
+-->
+
+<body>
+<div id="wrapper">
+
+<!--	Page header
+		Includes: Logo, Weblinks (Facebook, LinkedIn and Twitter), Contact no.
+-->
+
+<div id="header">
+
+	<div id="textleft">
+        <a href="https://www.facebook.com/goonj.net?ref=hl"><img src="/static/fb.png" height="32" />  </a>  &nbsp;    <a href="http://www.linkedin.com/company/gram-vaani-community-media?trk=hb_tab_compy_id_2549986"> <img src="/static/linkedin.png" height="32" /> </a> &nbsp; <a href="http://www.gramvaani.org/"><img src="/static/gv.jpg" height="32" />  </a>
+	</div>
+    
+    
+    <div id="textright">
+    	<img src="/static/phone-logo.png"  height="22" />  088-000-97-458
+    </div>
+
+
+</div>
+
+<center> <a href="/goonj/" > <img src="/static/goonj.jpg"  align="absmiddle" height="70" /> </a> </center>
+
+<!--	Page header ends -->
+
+<br /><hr /><hr />
+
+
+<!--	Menu Bar
+		Includes: Home, Topic Channels, Issues, Reports, Search
+-->
+
+<nav id="masternav" class="clearfix">
+
+	<div class="menu-main-container">
+    	<ul id="menu-main" class="sf-menu">
+        	
+            <li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item">
+            	<a href="/goonj/">Home</a>
+            </li>
+
+
+			
+			<li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item">
+            	<a href="#">TOPIC CHANNELS</a>
+			<ul class="sub-menu">
+
+
+
+{% for tc in topic_channel_list %}
+			<li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item">
+                    	<a href="/goonj/topic_channel/{{ tc.topic_channel_id }}/">{{ tc.topic }}</a>
+                    </li>					
+{% endfor %}
+
+				</ul>
+
+<li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item">
+                <a href="#">LOCATIONS</a>
+
+
+        <ul>
+                <li>
+
+                        <table>
+
+
+
+                        {% for lvar in bigloclist %}
+
+
+
+                        <tr>
+                                <td><a href="/goonj/location/{{ lvar.loc1.id }}/">{{ lvar.loc1.name }}</a></td>
+                                <td><a href="/goonj/location/{{ lvar.loc2.id }}/">{{ lvar.loc2.name }}</a></td>
+                                <td><a href="/goonj/location/{{ lvar.loc3.id }}/">{{ lvar.loc3.name }}</a></td>
+                        </tr>
+
+                        {% endfor %}
+
+
+
+                        </table>
+
+                </li>
+
+        </ul>
+
+</li>
+
+<!--			<li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item">
+            	<a href="/goonj/all_issues/">ISSUES</a>
+			</li>  -->
+
+		<li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item">
+            	<a href="/goonj/all_stories/">ALL STORIES</a>
+			</li>
+            
+			<li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item">
+            	<a href="/goonj/reports">REPORTS</a>
+			<!--	<ul class="sub-menu">
+					<li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item">
+                    	<a href="http://www.gramvaani.org/wp-content/uploads/2012/07/2012-july-jmr-report.pdf">July</a>
+                    </li>
+					<li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item">
+                    	<a href="http://www.gramvaani.org/wp-content/uploads/2012/07/2012-june-jmr-report.pdf">June</a>
+                    </li>
+					<li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item">
+                    	<a href="http://www.gramvaani.org/wp-content/uploads/2012/05/JMR-Report-May-2012.pdf">May</a>
+                    </li>
+				</ul>   -->
+			</li>
+
+		<!--	<li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item">
+            	<a href="/goonj/top10/">Top 10</a>
+            </li> -->
+           
+  <!--          <li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item">
+            	<a href="/goonj/search/">Search</a>
+            </li> -->
+                                    <li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page menu-item">
+            	<a href="/goonj/timelines">Timelines</a>
+            	</li>
+		</ul>
+    </div>
+</nav>
+
+<!--	Menu Bar ends -->
+
+<hr /><hr />
+
+
+
+
+
+
+
+<br><br>
+
+{% load custom_filters %}
+<div class = "issuelist">
+{% for event in events %}
+		<div class = "issue">
+				<h3 align = "left"><b>{{ event.event }}</b></h3> {{ stories_list|access:forloop.counter0|length }} 
+				{% if stories_list|access:forloop.counter0|length == 1 %}
+					story,
+				{% else %}
+					stories, 
+				{% endif %} 
+				last updated on {{ publish_dates|access:forloop.counter0}}
+				<p> 
+				<label for="expand - {{ forloop.counter0 }}"><img src="/static/arrowright.png" name = "arrow"></label><br>
+				{{ event.synopsis }}
+				</p>
+				<input type="Checkbox" name="tl-group2" id = "expand - {{ forloop.counter0 }}" left: -9999px/>
+				<ul class="timeline">
+{% for story in stories_list|access:forloop.counter0 %}
+					<li class="event">
+						<input type="Checkbox" name="tl-group"/>
+						<label></label>
+						<div class="content-perspective">
+							<div class="content">
+								<div class="content-inner">
+									<h3>{{ story.title }} <br>{{story.date}}</h3>
+									<p>
+									{{ story.transcript }}<br>
+									<object type="application/x-shockwave-flash" data="/static/player.swf" width="300" height="40">
+     <param name="movie" value="/static/player.swf" />
+     <param name="FlashVars" value="mp3=/goonj/goonjmedia/{{ story.audio }}" />
+</object>
+									</p>
+								</div>
+							</div>
+						</div>
+					</li>
+{% endfor %}	
+				<label for="expand - {{ forloop.counter0 }}"><img src="/static/arrowleft.png" name = "arrow"></label>
+
+				</ul>
+				
+	</div><!-- END OF ISSUE -->
+{% endfor %}
+	
+</div> <!-- END OF ISSUELIST -->
+
+
+
+
+
+<!--	
+		Footer
+        Contains: About us, Our Team and COntact links
+        Copyright text.
+        At every page end
+-->
+
+
+<div id="footer" class="foot">
+<hr />
+<br /><br />
+
+	<ul>
+		<li><a href="/goonj/about">About Us</a></li>
+		<li><a href="/goonj/team">Our Team</a></li>
+		<li><a href="/goonj/contact">Contact Us</a></li>
+	</ul>
+    <br /><br /><br />
+
+<hr /><br />
+	<p>&copy;2012 Goonj </p>
+</div>
+		
+</div>
+</body>
+
+<!--
+	
+    Body End
+    
+-->
+
+</html>
+
+
+
+
+
+    
+    	
+
+
+
+
+
